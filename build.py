@@ -659,6 +659,9 @@ Allow: /
 Sitemap: %s/sitemap.xml
 """ % BASE_URL
 
+# IndexNow（Bing / Yandex 即时收录）key 文件，与 maqiangthunder.github.io 上其他项目站点共用同一 key
+INDEXNOW_KEY = "93ea49b44c5ab1387d572caf5c00ed1a"
+
 SITEMAP = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 %s
@@ -758,6 +761,7 @@ def main():
     write("cron/index.html", build_cron())
     write("robots.txt", ROBOTS)
     write(".nojekyll", "")
+    write(INDEXNOW_KEY + ".txt", INDEXNOW_KEY)
 
     # sitemap
     urls = [("", "1.0"), ("ascii/", "0.9"), ("httpstatus/", "0.9"), ("cron/", "0.9")]
