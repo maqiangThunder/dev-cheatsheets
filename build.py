@@ -86,10 +86,10 @@ def shell(slug, title, desc, body, h1, en, lead, cta=None, extra_head=""):
     """slug 为空串表示首页。"""
     canonical = BASE_URL + "/" + (slug + "/" if slug else "")
     if slug:
-        home = "../"
+        rel = "../"
         crumb = '<a class="crumb" href="../">← 开发者速查表</a>'
     else:
-        home = ""
+        rel = ""
         crumb = '<span class="crumb">开发者速查表 · Developer Cheat Sheets</span>'
     cta_html = ""
     if cta:
@@ -126,7 +126,7 @@ def shell(slug, title, desc, body, h1, en, lead, cta=None, extra_head=""):
 </main>
 <footer>
   <div class="wrap">
-    <div class="links">相关：<a href="%s" target="_blank" rel="noopener">Util123 在线工具集</a> · <a href="%s/ascii/">ASCII 码表</a> · <a href="%s/httpstatus/">HTTP 状态码</a> · <a href="%s/cron/">Cron 表达式</a></div>
+    <div class="links">相关：<a href="%s" target="_blank" rel="noopener">Util123 在线工具集</a> · <a href="%sascii/">ASCII 码表</a> · <a href="%shttpstatus/">HTTP 状态码</a> · <a href="%scron/">Cron 表达式</a></div>
     <div>本站为纯静态速查手册，数据可自由引用。需要交互计算请使用 <a href="%s" target="_blank" rel="noopener">util123.top</a>。</div>
     <div style="margin-top:6px">© 2026 %s · <a href="https://github.com/maqiangThunder/dev-cheatsheets" target="_blank" rel="noopener">GitHub</a></div>
   </div>
@@ -136,7 +136,7 @@ def shell(slug, title, desc, body, h1, en, lead, cta=None, extra_head=""):
 """ % (
         esc(title), esc(desc), esc(canonical), esc(title), esc(desc), esc(canonical),
         extra_head, CSS, crumb, h1, esc(en), lead, cta_html, body,
-        UTIL, home, home, home, UTIL, SITE,
+        UTIL, rel, rel, rel, UTIL, SITE,
     )
 
 
