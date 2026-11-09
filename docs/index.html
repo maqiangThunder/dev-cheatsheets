@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>开发者速查表 · ASCII / HTTP 状态码 / Cron 表达式 | Developer Cheat Sheets</title>
+<meta name="description" content="中文开发者速查表：ASCII 码表、HTTP 状态码全量对照、Cron 表达式语法与常用示例。纯静态、无广告、可离线保存。">
+<link rel="canonical" href="https://maqiangthunder.github.io/dev-cheatsheets/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="开发者速查表 · ASCII / HTTP 状态码 / Cron 表达式 | Developer Cheat Sheets">
+<meta property="og:description" content="中文开发者速查表：ASCII 码表、HTTP 状态码全量对照、Cron 表达式语法与常用示例。纯静态、无广告、可离线保存。">
+<meta property="og:url" content="https://maqiangthunder.github.io/dev-cheatsheets/">
+<meta name="theme-color" content="#2563eb">
+<style>
+:root{--brand:#2563eb;--brand-d:#1d4ed8;--accent:#0ea5e9;--ink:#0f172a;--muted:#64748b;
+--line:#e2e8f0;--bg:#f8fafc;--card:#fff;--code-bg:#f1f5f9;--tip-bg:#eff6ff;--tip-line:#bfdbfe;
+--warn-bg:#fff7ed;--warn-line:#fed7aa;--ok:#059669}
+@media (prefers-color-scheme:dark){:root{--ink:#e2e8f0;--muted:#94a3b8;--line:#1e293b;
+--bg:#0b1220;--card:#111a2b;--code-bg:#0f172a;--tip-bg:#0e1c33;--tip-line:#1e3a5f;
+--warn-bg:#2a1c0c;--warn-line:#7c4a12;--ok:#34d399}}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+color:var(--ink);background:var(--bg);line-height:1.68;-webkit-font-smoothing:antialiased;font-size:15.5px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(135deg,#1d4ed8 0%,#0ea5e9 100%);color:#fff;padding:46px 0 40px}
+header a{color:#dbeafe}
+header h1{margin:8px 0 12px;font-size:31px;line-height:1.3;letter-spacing:-.4px}
+header h1 .en{display:block;font-size:15px;font-weight:400;opacity:.82;margin-top:8px;letter-spacing:0}
+header p.lead{margin:0;opacity:.93;font-size:15px;max-width:660px}
+.crumb{font-size:13px;opacity:.85;text-decoration:none}
+.crumb:hover{text-decoration:underline}
+a.cta{display:inline-block;margin-top:20px;background:#fff;color:var(--brand-d);text-decoration:none;
+font-weight:600;padding:11px 22px;border-radius:10px;font-size:14.5px;box-shadow:0 2px 10px rgba(2,6,23,.16)}
+a.cta:hover{background:#f1f5f9}
+main{padding:34px 0 56px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 10px;margin-bottom:20px}
+h2{font-size:19.5px;margin:0 0 6px;letter-spacing:-.2px}
+h2 .en{font-weight:400;color:var(--muted);font-size:13.5px;margin-left:8px;letter-spacing:0}
+.sub{color:var(--muted);font-size:13.8px;margin:0 0 15px}
+h3{font-size:15.5px;margin:20px 0 8px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:6px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;
+background:var(--code-bg);padding:1px 5px;border-radius:5px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:16px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+border-bottom:1px solid #cbd5e1;white-space:nowrap;position:sticky;top:0;background:var(--card)}
+tbody tr:hover{background:var(--code-bg)}
+td.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;color:var(--brand);white-space:nowrap}
+td.ch{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;text-align:center}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-bottom:6px}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);
+border-radius:12px;padding:16px 18px;transition:.15s;margin-bottom:0}
+a.card:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.12)}
+a.card .t{font-weight:650;font-size:15.5px;margin-bottom:4px;color:var(--brand)}
+a.card .d{font-size:13.4px;color:var(--muted);line-height:1.55}
+.tip,.warn{border-radius:10px;padding:13px 16px;margin:0 0 16px;font-size:14px}
+.tip{background:var(--tip-bg);border:1px solid var(--tip-line)}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line)}
+.tip b,.warn b{display:block;margin-bottom:3px}
+.grp{font-weight:650;font-size:14px;margin:18px 0 6px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13.4px}
+footer a{color:var(--brand);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .links{margin-bottom:8px}
+@media(max-width:600px){
+header{padding:34px 0 30px}header h1{font-size:24px}body{font-size:15px}
+section{padding:18px 16px 6px}main{padding:24px 0 40px}
+table{font-size:13.2px}th,td{padding:7px 8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <span class="crumb">开发者速查表 · Developer Cheat Sheets</span>
+    <h1>开发者速查表<span class="en">ASCII · HTTP Status Codes · Cron Expressions</span></h1>
+    <p class="lead">三个最常被翻来翻去的表。纯静态页面，打开即查，不用等加载。</p>
+    <a class="cta" href="https://util123.top">打开在线工具集 →</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+
+<section>
+  <h2>速查表目录<span class="en">Cheat Sheets</span></h2>
+  <p class="sub">纯静态、无广告、无登录，手机上也能直接查。表格里的数据可以直接复制。</p>
+  <div class="grid">
+<a class="card" href="ascii/"><div class="t">ASCII 码表</div><div class="d">0–127 全码位对照：十进制 / 十六进制 / 字符 / 含义，含控制字符与常见转义坑。</div></a>
+<a class="card" href="httpstatus/"><div class="t">HTTP 状态码</div><div class="d">1xx–5xx 全量状态码中文速查 + 401/403、301/302/307/308、502/504 等易混辨析。</div></a>
+<a class="card" href="cron/"><div class="t">Cron 表达式</div><div class="d">5 字段语法、特殊符号含义、20+ 常用写法，以及月日与周同时指定这类经典陷阱。</div></a>
+  </div>
+</section>
+
+<section>
+  <h2>为什么是「速查」而不是「工具」<span class="en">Why a reference, not a tool</span></h2>
+  <p>查表是线性的：知道要找什么，只需要快速定位。这类场景下，一页纯静态 HTML 比任何需要加载、需要点选、需要联网调接口的工具都更快 —— 打开即到，Ctrl+F 就能搜。</p>
+  <p>但有些问题查表解决不了。比如「这条 cron 下次什么时候跑」不是查出来的，是算出来的；「这段 Base64 解出来是什么」也不是查出来的。这些交给 <a href="https://util123.top" target="_blank" rel="noopener">util123.top</a> 上的在线工具。</p>
+  <div class="tip"><b>两手准备</b>这里负责「记住写法」，工具站负责「验证结果」。速查页底部的按钮会直接跳到对应工具，不用自己找。</div>
+</section>
+
+<section>
+  <h2>数据来源与维护<span class="en">Sources</span></h2>
+  <ul>
+    <li>ASCII 码表依据 ANSI X3.4-1968 / ISO 646 标准字符集整理。</li>
+    <li>HTTP 状态码依据 IANA HTTP Status Code Registry 与 RFC 9110 整理。</li>
+    <li>Cron 语法以 Vixie Cron 实现为基准 —— 这也是 Linux 发行版和大多数在线 Cron 服务实际使用的方言。</li>
+  </ul>
+  <p>发现错漏欢迎在 <a href="https://github.com/maqiangThunder/dev-cheatsheets/issues" target="_blank" rel="noopener">GitHub Issues</a> 提出。</p>
+</section>
+
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links">相关：<a href="https://util123.top" target="_blank" rel="noopener">Util123 在线工具集</a> · <a href="/ascii/">ASCII 码表</a> · <a href="/httpstatus/">HTTP 状态码</a> · <a href="/cron/">Cron 表达式</a></div>
+    <div>本站为纯静态速查手册，数据可自由引用。需要交互计算请使用 <a href="https://util123.top" target="_blank" rel="noopener">util123.top</a>。</div>
+    <div style="margin-top:6px">© 2026 开发者速查表 · <a href="https://github.com/maqiangThunder/dev-cheatsheets" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

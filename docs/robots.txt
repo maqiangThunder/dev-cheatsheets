@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maqiangthunder.github.io/dev-cheatsheets/sitemap.xml

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTTP 状态码速查 · 1xx–5xx 全量中文对照 | 开发者速查表</title>
+<meta name="description" content="HTTP 状态码完整速查表：1xx 到 5xx 全量状态码中文含义与说明，含 401/403、301/302/303/307/308、502/504 等易混辨析与排查方向。">
+<link rel="canonical" href="https://maqiangthunder.github.io/dev-cheatsheets/httpstatus/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HTTP 状态码速查 · 1xx–5xx 全量中文对照 | 开发者速查表">
+<meta property="og:description" content="HTTP 状态码完整速查表：1xx 到 5xx 全量状态码中文含义与说明，含 401/403、301/302/303/307/308、502/504 等易混辨析与排查方向。">
+<meta property="og:url" content="https://maqiangthunder.github.io/dev-cheatsheets/httpstatus/">
+<meta name="theme-color" content="#2563eb">
+<style>
+:root{--brand:#2563eb;--brand-d:#1d4ed8;--accent:#0ea5e9;--ink:#0f172a;--muted:#64748b;
+--line:#e2e8f0;--bg:#f8fafc;--card:#fff;--code-bg:#f1f5f9;--tip-bg:#eff6ff;--tip-line:#bfdbfe;
+--warn-bg:#fff7ed;--warn-line:#fed7aa;--ok:#059669}
+@media (prefers-color-scheme:dark){:root{--ink:#e2e8f0;--muted:#94a3b8;--line:#1e293b;
+--bg:#0b1220;--card:#111a2b;--code-bg:#0f172a;--tip-bg:#0e1c33;--tip-line:#1e3a5f;
+--warn-bg:#2a1c0c;--warn-line:#7c4a12;--ok:#34d399}}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+color:var(--ink);background:var(--bg);line-height:1.68;-webkit-font-smoothing:antialiased;font-size:15.5px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(135deg,#1d4ed8 0%,#0ea5e9 100%);color:#fff;padding:46px 0 40px}
+header a{color:#dbeafe}
+header h1{margin:8px 0 12px;font-size:31px;line-height:1.3;letter-spacing:-.4px}
+header h1 .en{display:block;font-size:15px;font-weight:400;opacity:.82;margin-top:8px;letter-spacing:0}
+header p.lead{margin:0;opacity:.93;font-size:15px;max-width:660px}
+.crumb{font-size:13px;opacity:.85;text-decoration:none}
+.crumb:hover{text-decoration:underline}
+a.cta{display:inline-block;margin-top:20px;background:#fff;color:var(--brand-d);text-decoration:none;
+font-weight:600;padding:11px 22px;border-radius:10px;font-size:14.5px;box-shadow:0 2px 10px rgba(2,6,23,.16)}
+a.cta:hover{background:#f1f5f9}
+main{padding:34px 0 56px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 10px;margin-bottom:20px}
+h2{font-size:19.5px;margin:0 0 6px;letter-spacing:-.2px}
+h2 .en{font-weight:400;color:var(--muted);font-size:13.5px;margin-left:8px;letter-spacing:0}
+.sub{color:var(--muted);font-size:13.8px;margin:0 0 15px}
+h3{font-size:15.5px;margin:20px 0 8px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:6px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;
+background:var(--code-bg);padding:1px 5px;border-radius:5px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:16px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+border-bottom:1px solid #cbd5e1;white-space:nowrap;position:sticky;top:0;background:var(--card)}
+tbody tr:hover{background:var(--code-bg)}
+td.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;color:var(--brand);white-space:nowrap}
+td.ch{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;text-align:center}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-bottom:6px}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);
+border-radius:12px;padding:16px 18px;transition:.15s;margin-bottom:0}
+a.card:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.12)}
+a.card .t{font-weight:650;font-size:15.5px;margin-bottom:4px;color:var(--brand)}
+a.card .d{font-size:13.4px;color:var(--muted);line-height:1.55}
+.tip,.warn{border-radius:10px;padding:13px 16px;margin:0 0 16px;font-size:14px}
+.tip{background:var(--tip-bg);border:1px solid var(--tip-line)}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line)}
+.tip b,.warn b{display:block;margin-bottom:3px}
+.grp{font-weight:650;font-size:14px;margin:18px 0 6px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13.4px}
+footer a{color:var(--brand);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .links{margin-bottom:8px}
+@media(max-width:600px){
+header{padding:34px 0 30px}header h1{font-size:24px}body{font-size:15px}
+section{padding:18px 16px 6px}main{padding:24px 0 40px}
+table{font-size:13.2px}th,td{padding:7px 8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="crumb" href="../">← 开发者速查表</a>
+    <h1>HTTP 状态码速查<span class="en">HTTP Status Codes · 1xx to 5xx Reference</span></h1>
+    <p class="lead">全量状态码中文对照，外加最容易搞混的几组（401/403、502/504、3xx 全家）该怎么选。</p>
+    <a class="cta" href="https://util123.top/httpstatus/">状态码排查工具 →</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+
+<section>
+  <h2>先记住这四个<span class="en">The four that matter most</span></h2>
+  <div class="scroll"><table><thead><tr><th>码</th><th>含义</th><th>一句话判断</th></tr></thead><tbody>
+  <tr><td class="mono">200</td><td>成功</td><td>一切正常。</td></tr>
+  <tr><td class="mono">301</td><td>永久重定向</td><td>地址换了，以后都去新地址。</td></tr>
+  <tr><td class="mono">404</td><td>未找到</td><td>地址本身不对。</td></tr>
+  <tr><td class="mono">500</td><td>服务器内部错误</td><td>地址对了，服务端自己崩了。</td></tr>
+  </tbody></table></div>
+  <p class="sub">排查顺序：先看状态码属于哪一类 —— 4xx 改客户端，5xx 看服务端日志，3xx 检查跳转链。</p>
+</section>
+
+<section>
+  <h2>1xx · 信息响应 Information<span class="en">信息响应</span></h2>
+  <div class="scroll"><table><thead><tr><th>码</th><th>标准名称</th><th>中文</th><th>说明</th></tr></thead>
+  <tbody><tr><td class="mono">100</td><td class="mono" style="color:var(--ink);font-weight:600">Continue</td><td>继续</td><td>服务器已收到请求头，客户端应继续发送请求体。</td></tr><tr><td class="mono">101</td><td class="mono" style="color:var(--ink);font-weight:600">Switching Protocols</td><td>切换协议</td><td>响应 Upgrade 头，切换到 WebSocket 等协议。</td></tr><tr><td class="mono">102</td><td class="mono" style="color:var(--ink);font-weight:600">Processing</td><td>处理中</td><td>WebDAV，请求已收到但尚未完成。</td></tr><tr><td class="mono">103</td><td class="mono" style="color:var(--ink);font-weight:600">Early Hints</td><td>早期提示</td><td>在最终响应前先返回 Link 头，用于预加载资源。</td></tr></tbody></table></div>
+</section>
+<section>
+  <h2>2xx · 成功 Success<span class="en">成功</span></h2>
+  <div class="scroll"><table><thead><tr><th>码</th><th>标准名称</th><th>中文</th><th>说明</th></tr></thead>
+  <tbody><tr><td class="mono">200</td><td class="mono" style="color:var(--ink);font-weight:600">OK</td><td>成功</td><td>请求成功，响应体包含结果。</td></tr><tr><td class="mono">201</td><td class="mono" style="color:var(--ink);font-weight:600">Created</td><td>已创建</td><td>资源创建成功，通常配合 Location 头返回新资源地址。</td></tr><tr><td class="mono">202</td><td class="mono" style="color:var(--ink);font-weight:600">Accepted</td><td>已接受</td><td>请求已受理但尚未处理完，适合异步任务。</td></tr><tr><td class="mono">203</td><td class="mono" style="color:var(--ink);font-weight:600">Non-Authoritative Information</td><td>非授权信息</td><td>返回的是经过代理转换的元信息。</td></tr><tr><td class="mono">204</td><td class="mono" style="color:var(--ink);font-weight:600">No Content</td><td>无内容</td><td>成功但无响应体，常用于 DELETE、PUT。</td></tr><tr><td class="mono">205</td><td class="mono" style="color:var(--ink);font-weight:600">Reset Content</td><td>重置内容</td><td>要求客户端重置表单视图。</td></tr><tr><td class="mono">206</td><td class="mono" style="color:var(--ink);font-weight:600">Partial Content</td><td>部分内容</td><td>断点续传/分段下载，配合 Range 头使用。</td></tr><tr><td class="mono">207</td><td class="mono" style="color:var(--ink);font-weight:600">Multi-Status</td><td>多状态</td><td>WebDAV，响应体是 XML 描述多个子请求结果。</td></tr><tr><td class="mono">208</td><td class="mono" style="color:var(--ink);font-weight:600">Already Reported</td><td>已报告</td><td>WebDAV，避免重复枚举同一资源。</td></tr><tr><td class="mono">226</td><td class="mono" style="color:var(--ink);font-weight:600">IM Used</td><td>IM 已使用</td><td>Delta 编码，响应是实例操作的结果。</td></tr></tbody></table></div>
+</section>
+<section>
+  <h2>3xx · 重定向 Redirection<span class="en">重定向</span></h2>
+  <div class="scroll"><table><thead><tr><th>码</th><th>标准名称</th><th>中文</th><th>说明</th></tr></thead>
+  <tbody><tr><td class="mono">300</td><td class="mono" style="color:var(--ink);font-weight:600">Multiple Choices</td><td>多种选择</td><td>资源有多个表示，需要客户端选择。</td></tr><tr><td class="mono">301</td><td class="mono" style="color:var(--ink);font-weight:600">Moved Permanently</td><td>永久移动</td><td>永久重定向，搜索引擎会传递权重并把索引切到新地址。</td></tr><tr><td class="mono">302</td><td class="mono" style="color:var(--ink);font-weight:600">Found</td><td>临时移动</td><td>临时重定向，历史实现可能把 POST 改成 GET。</td></tr><tr><td class="mono">303</td><td class="mono" style="color:var(--ink);font-weight:600">See Other</td><td>查看其他</td><td>明确要求客户端用 GET 访问 Location。</td></tr><tr><td class="mono">304</td><td class="mono" style="color:var(--ink);font-weight:600">Not Modified</td><td>未修改</td><td>协商缓存命中，响应无实体，直接用本地缓存。</td></tr><tr><td class="mono">305</td><td class="mono" style="color:var(--ink);font-weight:600">Use Proxy</td><td>使用代理</td><td>已废弃，客户端应通过代理访问。</td></tr><tr><td class="mono">307</td><td class="mono" style="color:var(--ink);font-weight:600">Temporary Redirect</td><td>临时重定向</td><td>临时跳转且<b>保持原方法</b>，POST 仍是 POST。</td></tr><tr><td class="mono">308</td><td class="mono" style="color:var(--ink);font-weight:600">Permanent Redirect</td><td>永久重定向</td><td>永久跳转且保持原方法，是 301 的方法安全版。</td></tr></tbody></table></div>
+</section>
+<section>
+  <h2>4xx · 客户端错误 Client Error<span class="en">客户端错误</span></h2>
+  <div class="scroll"><table><thead><tr><th>码</th><th>标准名称</th><th>中文</th><th>说明</th></tr></thead>
+  <tbody><tr><td class="mono">400</td><td class="mono" style="color:var(--ink);font-weight:600">Bad Request</td><td>请求错误</td><td>语法错误、参数不合法，服务端无法解析。</td></tr><tr><td class="mono">401</td><td class="mono" style="color:var(--ink);font-weight:600">Unauthorized</td><td>未认证</td><td>缺少或无效的身份凭证 —— 先登录。</td></tr><tr><td class="mono">402</td><td class="mono" style="color:var(--ink);font-weight:600">Payment Required</td><td>需要付费</td><td>预留码，部分 API 用于表示额度耗尽。</td></tr><tr><td class="mono">403</td><td class="mono" style="color:var(--ink);font-weight:600">Forbidden</td><td>禁止访问</td><td>身份已识别但无权访问 —— 登录了也不给。</td></tr><tr><td class="mono">404</td><td class="mono" style="color:var(--ink);font-weight:600">Not Found</td><td>未找到</td><td>资源不存在。为避免泄露信息，也常用于掩盖 403。</td></tr><tr><td class="mono">405</td><td class="mono" style="color:var(--ink);font-weight:600">Method Not Allowed</td><td>方法不允许</td><td>接口存在但不支持该 HTTP 方法，响应带 Allow 头。</td></tr><tr><td class="mono">406</td><td class="mono" style="color:var(--ink);font-weight:600">Not Acceptable</td><td>不可接受</td><td>服务端无法提供客户端 Accept 头要求的格式。</td></tr><tr><td class="mono">407</td><td class="mono" style="color:var(--ink);font-weight:600">Proxy Authentication Required</td><td>需要代理认证</td><td>需先通过代理的身份验证。</td></tr><tr><td class="mono">408</td><td class="mono" style="color:var(--ink);font-weight:600">Request Timeout</td><td>请求超时</td><td>服务器等待请求完成超时。</td></tr><tr><td class="mono">409</td><td class="mono" style="color:var(--ink);font-weight:600">Conflict</td><td>冲突</td><td>请求与资源当前状态冲突，如并发写入、版本号不匹配。</td></tr><tr><td class="mono">410</td><td class="mono" style="color:var(--ink);font-weight:600">Gone</td><td>已移除</td><td>资源曾存在但已永久删除，搜索引擎应移除索引。</td></tr><tr><td class="mono">411</td><td class="mono" style="color:var(--ink);font-weight:600">Length Required</td><td>需要长度</td><td>缺少 Content-Length。</td></tr><tr><td class="mono">412</td><td class="mono" style="color:var(--ink);font-weight:600">Precondition Failed</td><td>前置条件失败</td><td>If-Match 等条件不成立，常见于乐观锁。</td></tr><tr><td class="mono">413</td><td class="mono" style="color:var(--ink);font-weight:600">Payload Too Large</td><td>请求体过大</td><td>超过服务端限制，需调整上传大小或 nginx client_max_body_size。</td></tr><tr><td class="mono">414</td><td class="mono" style="color:var(--ink);font-weight:600">URI Too Long</td><td>URI 过长</td><td>GET 参数塞太多，应改用 POST。</td></tr><tr><td class="mono">415</td><td class="mono" style="color:var(--ink);font-weight:600">Unsupported Media Type</td><td>不支持的媒体类型</td><td>Content-Type 不被接受，常见是漏了 application/json。</td></tr><tr><td class="mono">416</td><td class="mono" style="color:var(--ink);font-weight:600">Range Not Satisfiable</td><td>范围不满足</td><td>Range 头超出资源长度。</td></tr><tr><td class="mono">417</td><td class="mono" style="color:var(--ink);font-weight:600">Expectation Failed</td><td>期望失败</td><td>无法满足 Expect 请求头。</td></tr><tr><td class="mono">418</td><td class="mono" style="color:var(--ink);font-weight:600">I&#x27;m a teapot</td><td>我是茶壶</td><td>愚人节 RFC 2324，部分框架用它做彩蛋或拦截爬虫。</td></tr><tr><td class="mono">421</td><td class="mono" style="color:var(--ink);font-weight:600">Misdirected Request</td><td>请求定向错误</td><td>连接复用到不处理该域名的服务器，HTTP/2 常见。</td></tr><tr><td class="mono">422</td><td class="mono" style="color:var(--ink);font-weight:600">Unprocessable Entity</td><td>无法处理的实体</td><td>语法正确但语义校验失败，REST API 最常用它表示表单校验不通过。</td></tr><tr><td class="mono">423</td><td class="mono" style="color:var(--ink);font-weight:600">Locked</td><td>已锁定</td><td>WebDAV，资源被锁定。</td></tr><tr><td class="mono">424</td><td class="mono" style="color:var(--ink);font-weight:600">Failed Dependency</td><td>依赖失败</td><td>WebDAV，因前一个请求失败而失败。</td></tr><tr><td class="mono">425</td><td class="mono" style="color:var(--ink);font-weight:600">Too Early</td><td>过早</td><td>TLS 1.3 0-RTT 重放风险，服务端拒绝。</td></tr><tr><td class="mono">426</td><td class="mono" style="color:var(--ink);font-weight:600">Upgrade Required</td><td>需要升级</td><td>要求客户端升级协议，如强制 HTTPS 或 HTTP/2。</td></tr><tr><td class="mono">428</td><td class="mono" style="color:var(--ink);font-weight:600">Precondition Required</td><td>需要前置条件</td><td>要求请求带 If-Match 等条件，防止丢失更新。</td></tr><tr><td class="mono">429</td><td class="mono" style="color:var(--ink);font-weight:600">Too Many Requests</td><td>请求过多</td><td>触发限流，响应通常带 Retry-After。</td></tr><tr><td class="mono">431</td><td class="mono" style="color:var(--ink);font-weight:600">Request Header Fields Too Large</td><td>请求头过大</td><td>Cookie 或 header 太长，需精简。</td></tr><tr><td class="mono">451</td><td class="mono" style="color:var(--ink);font-weight:600">Unavailable For Legal Reasons</td><td>因法律原因不可用</td><td>因法律要求被屏蔽，如版权、合规审查。</td></tr></tbody></table></div>
+</section>
+<section>
+  <h2>5xx · 服务端错误 Server Error<span class="en">服务端错误</span></h2>
+  <div class="scroll"><table><thead><tr><th>码</th><th>标准名称</th><th>中文</th><th>说明</th></tr></thead>
+  <tbody><tr><td class="mono">500</td><td class="mono" style="color:var(--ink);font-weight:600">Internal Server Error</td><td>服务器内部错误</td><td>未捕获异常，需要看服务端日志。</td></tr><tr><td class="mono">501</td><td class="mono" style="color:var(--ink);font-weight:600">Not Implemented</td><td>未实现</td><td>服务器不支持该请求方法。</td></tr><tr><td class="mono">502</td><td class="mono" style="color:var(--ink);font-weight:600">Bad Gateway</td><td>网关错误</td><td>网关从上游收到无效响应 —— 上游挂了或返回了垃圾。</td></tr><tr><td class="mono">503</td><td class="mono" style="color:var(--ink);font-weight:600">Service Unavailable</td><td>服务不可用</td><td>过载或维护中，通常带 Retry-After。</td></tr><tr><td class="mono">504</td><td class="mono" style="color:var(--ink);font-weight:600">Gateway Timeout</td><td>网关超时</td><td>网关等上游响应超时 —— 上游还活着但太慢。</td></tr><tr><td class="mono">505</td><td class="mono" style="color:var(--ink);font-weight:600">HTTP Version Not Supported</td><td>HTTP 版本不支持</td><td>不支持请求使用的 HTTP 版本。</td></tr><tr><td class="mono">506</td><td class="mono" style="color:var(--ink);font-weight:600">Variant Also Negotiates</td><td>变体协商</td><td>内容协商配置错误导致循环。</td></tr><tr><td class="mono">507</td><td class="mono" style="color:var(--ink);font-weight:600">Insufficient Storage</td><td>存储不足</td><td>WebDAV，服务器存储空间不足。</td></tr><tr><td class="mono">508</td><td class="mono" style="color:var(--ink);font-weight:600">Loop Detected</td><td>检测到循环</td><td>WebDAV，处理请求时出现无限循环。</td></tr><tr><td class="mono">510</td><td class="mono" style="color:var(--ink);font-weight:600">Not Extended</td><td>未扩展</td><td>需要进一步扩展请求才能处理。</td></tr><tr><td class="mono">511</td><td class="mono" style="color:var(--ink);font-weight:600">Network Authentication Required</td><td>需要网络认证</td><td>常见于公共 WiFi 门户认证拦截。</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2>最容易搞混的几组<span class="en">Confusing pairs</span></h2>
+
+  <h3>401 还是 403？</h3>
+  <p><b>401 Unauthorized</b>：你没证明你是谁 —— 没带 token、token 过期。正确做法是返回 <code>WWW-Authenticate</code> 头，引导重新认证。<br>
+  <b>403 Forbidden</b>：服务器知道你是谁，但你没权限。此时重新登录也没用。<br>
+  记忆法：401 = 没登录，403 = 登录了但不让进。</p>
+
+  <h3>301 / 302 / 303 / 307 / 308 怎么选</h3>
+  <div class="scroll"><table><thead><tr><th>码</th><th>是否永久</th><th>是否保持原方法</th><th>典型用途</th></tr></thead><tbody>
+  <tr><td class="mono">301</td><td>永久</td><td>历史上常被改成 GET</td><td>域名迁移、http→https、去掉 www</td></tr>
+  <tr><td class="mono">302</td><td>临时</td><td>历史上常被改成 GET</td><td>临时跳转、A/B 测试</td></tr>
+  <tr><td class="mono">303</td><td>临时</td><td>强制改成 GET</td><td>POST 提交后跳转到结果页（PRG 模式）</td></tr>
+  <tr><td class="mono">307</td><td>临时</td><td>保持</td><td>需要保住 POST body 的临时跳转</td></tr>
+  <tr><td class="mono">308</td><td>永久</td><td>保持</td><td>需要保住 POST body 的永久跳转</td></tr>
+  </tbody></table></div>
+  <div class="tip"><b>一句话</b>表单 POST 想跳转就用 303；接口需要保方法用 307/308；普通页面迁移用 301。</div>
+
+  <h3>502 还是 504？</h3>
+  <p><b>502 Bad Gateway</b>：网关拿到了上游的<b>无效响应</b> —— 上游进程挂了、端口没监听、返回了非 HTTP 内容。<br>
+  <b>504 Gateway Timeout</b>：网关<b>等不到</b>上游响应就超时了 —— 上游还活着，只是慢。<br>
+  排查方向：502 查上游进程和端口（<code>ss -ltnp</code>、日志有没有启动失败）；504 查上游耗时（慢 SQL、下游依赖卡住）和网关超时配置（<code>proxy_read_timeout</code>）。</p>
+
+  <h3>304 为什么没有响应体</h3>
+  <p>304 是协商缓存命中：浏览器带着 <code>If-None-Match</code> / <code>If-Modified-Since</code> 来问，服务端说「没变，用你本地的」。所以响应必须没有 body，只有头。给 304 塞 body 会导致部分客户端解析异常。</p>
+
+  <h3>418 能用在生产吗</h3>
+  <p>能 —— 它是一个合法注册的状态码，很多站点用它拦截特定爬虫（返回 418 而不是 403，避免被当成权限错误）。但别用它表示正常的业务失败。</p>
+</section>
+
+<section>
+  <h2>状态码分类速记<span class="en">Class semantics</span></h2>
+  <ul>
+    <li><b>1xx</b>：还在协商，不是最终结果。</li>
+    <li><b>2xx</b>：成功。注意 204 没有 body，别在里面读 JSON。</li>
+    <li><b>3xx</b>：需要再走一步。客户端要能跟随跳转，但 API 调用通常应关闭自动跟随以便观测。</li>
+    <li><b>4xx</b>：客户端的问题。同一个请求重发不会有不同结果，别做无脑重试。</li>
+    <li><b>5xx</b>：服务端的问题。可重试，但要带退避，否则放大故障。</li>
+  </ul>
+</section>
+
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links">相关：<a href="https://util123.top" target="_blank" rel="noopener">Util123 在线工具集</a> · <a href="..//ascii/">ASCII 码表</a> · <a href="..//httpstatus/">HTTP 状态码</a> · <a href="..//cron/">Cron 表达式</a></div>
+    <div>本站为纯静态速查手册，数据可自由引用。需要交互计算请使用 <a href="https://util123.top" target="_blank" rel="noopener">util123.top</a>。</div>
+    <div style="margin-top:6px">© 2026 开发者速查表 · <a href="https://github.com/maqiangThunder/dev-cheatsheets" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

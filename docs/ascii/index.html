@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASCII 码表 · 0–127 完整对照（十进制/十六进制/字符/含义） | 开发者速查表</title>
+<meta name="description" content="ASCII 码表完整版：0–127 全部码位对照十进制、十六进制、字符与含义，含控制字符、常用转义序列、DEL 与扩展区说明。">
+<link rel="canonical" href="https://maqiangthunder.github.io/dev-cheatsheets/ascii/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ASCII 码表 · 0–127 完整对照（十进制/十六进制/字符/含义） | 开发者速查表">
+<meta property="og:description" content="ASCII 码表完整版：0–127 全部码位对照十进制、十六进制、字符与含义，含控制字符、常用转义序列、DEL 与扩展区说明。">
+<meta property="og:url" content="https://maqiangthunder.github.io/dev-cheatsheets/ascii/">
+<meta name="theme-color" content="#2563eb">
+<style>
+:root{--brand:#2563eb;--brand-d:#1d4ed8;--accent:#0ea5e9;--ink:#0f172a;--muted:#64748b;
+--line:#e2e8f0;--bg:#f8fafc;--card:#fff;--code-bg:#f1f5f9;--tip-bg:#eff6ff;--tip-line:#bfdbfe;
+--warn-bg:#fff7ed;--warn-line:#fed7aa;--ok:#059669}
+@media (prefers-color-scheme:dark){:root{--ink:#e2e8f0;--muted:#94a3b8;--line:#1e293b;
+--bg:#0b1220;--card:#111a2b;--code-bg:#0f172a;--tip-bg:#0e1c33;--tip-line:#1e3a5f;
+--warn-bg:#2a1c0c;--warn-line:#7c4a12;--ok:#34d399}}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+color:var(--ink);background:var(--bg);line-height:1.68;-webkit-font-smoothing:antialiased;font-size:15.5px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(135deg,#1d4ed8 0%,#0ea5e9 100%);color:#fff;padding:46px 0 40px}
+header a{color:#dbeafe}
+header h1{margin:8px 0 12px;font-size:31px;line-height:1.3;letter-spacing:-.4px}
+header h1 .en{display:block;font-size:15px;font-weight:400;opacity:.82;margin-top:8px;letter-spacing:0}
+header p.lead{margin:0;opacity:.93;font-size:15px;max-width:660px}
+.crumb{font-size:13px;opacity:.85;text-decoration:none}
+.crumb:hover{text-decoration:underline}
+a.cta{display:inline-block;margin-top:20px;background:#fff;color:var(--brand-d);text-decoration:none;
+font-weight:600;padding:11px 22px;border-radius:10px;font-size:14.5px;box-shadow:0 2px 10px rgba(2,6,23,.16)}
+a.cta:hover{background:#f1f5f9}
+main{padding:34px 0 56px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 10px;margin-bottom:20px}
+h2{font-size:19.5px;margin:0 0 6px;letter-spacing:-.2px}
+h2 .en{font-weight:400;color:var(--muted);font-size:13.5px;margin-left:8px;letter-spacing:0}
+.sub{color:var(--muted);font-size:13.8px;margin:0 0 15px}
+h3{font-size:15.5px;margin:20px 0 8px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:6px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;
+background:var(--code-bg);padding:1px 5px;border-radius:5px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:16px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+border-bottom:1px solid #cbd5e1;white-space:nowrap;position:sticky;top:0;background:var(--card)}
+tbody tr:hover{background:var(--code-bg)}
+td.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;color:var(--brand);white-space:nowrap}
+td.ch{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;text-align:center}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-bottom:6px}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);
+border-radius:12px;padding:16px 18px;transition:.15s;margin-bottom:0}
+a.card:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.12)}
+a.card .t{font-weight:650;font-size:15.5px;margin-bottom:4px;color:var(--brand)}
+a.card .d{font-size:13.4px;color:var(--muted);line-height:1.55}
+.tip,.warn{border-radius:10px;padding:13px 16px;margin:0 0 16px;font-size:14px}
+.tip{background:var(--tip-bg);border:1px solid var(--tip-line)}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line)}
+.tip b,.warn b{display:block;margin-bottom:3px}
+.grp{font-weight:650;font-size:14px;margin:18px 0 6px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13.4px}
+footer a{color:var(--brand);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .links{margin-bottom:8px}
+@media(max-width:600px){
+header{padding:34px 0 30px}header h1{font-size:24px}body{font-size:15px}
+section{padding:18px 16px 6px}main{padding:24px 0 40px}
+table{font-size:13.2px}th,td{padding:7px 8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="crumb" href="../">← 开发者速查表</a>
+    <h1>ASCII 码表<span class="en">ASCII Table · 0–127 with Decimal, Hex and Meaning</span></h1>
+    <p class="lead">0 到 127 全部码位，按控制字符与可打印字符分两块。手机上横向滑动可看完整列。</p>
+    <a class="cta" href="https://util123.top/ascii/">在线 ASCII 转换器 →</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+
+<section>
+  <h2>控制字符 0–31<span class="en">Control characters</span></h2>
+  <p class="sub">不可打印，在代码里以转义序列出现。日常真正会用到的其实只有 LF、CR、HT、NUL 四个。</p>
+  <div class="scroll"><table><thead><tr><th>十进制</th><th>十六进制</th><th>缩写</th><th>含义</th></tr></thead><tbody><tr><td class="mono">0</td><td class="mono">0x00</td><td>—</td><td>NUL 空字符</td></tr><tr><td class="mono">1</td><td class="mono">0x01</td><td>—</td><td>SOH 标题开始</td></tr><tr><td class="mono">2</td><td class="mono">0x02</td><td>—</td><td>STX 正文开始</td></tr><tr><td class="mono">3</td><td class="mono">0x03</td><td>—</td><td>ETX 正文结束</td></tr><tr><td class="mono">4</td><td class="mono">0x04</td><td>—</td><td>EOT 传输结束</td></tr><tr><td class="mono">5</td><td class="mono">0x05</td><td>—</td><td>ENQ 询问</td></tr><tr><td class="mono">6</td><td class="mono">0x06</td><td>—</td><td>ACK 确认</td></tr><tr><td class="mono">7</td><td class="mono">0x07</td><td>—</td><td>BEL 响铃</td></tr><tr><td class="mono">8</td><td class="mono">0x08</td><td>—</td><td>BS 退格</td></tr><tr><td class="mono">9</td><td class="mono">0x09</td><td>—</td><td>HT 水平制表（Tab）</td></tr><tr><td class="mono">10</td><td class="mono">0x0A</td><td>—</td><td>LF 换行（\n）</td></tr><tr><td class="mono">11</td><td class="mono">0x0B</td><td>—</td><td>VT 垂直制表</td></tr><tr><td class="mono">12</td><td class="mono">0x0C</td><td>—</td><td>FF 换页</td></tr><tr><td class="mono">13</td><td class="mono">0x0D</td><td>—</td><td>CR 回车（\r）</td></tr><tr><td class="mono">14</td><td class="mono">0x0E</td><td>—</td><td>SO 移出</td></tr><tr><td class="mono">15</td><td class="mono">0x0F</td><td>—</td><td>SI 移入</td></tr><tr><td class="mono">16</td><td class="mono">0x10</td><td>—</td><td>DLE 数据链路转义</td></tr><tr><td class="mono">17</td><td class="mono">0x11</td><td>—</td><td>DC1 设备控制 1（XON）</td></tr><tr><td class="mono">18</td><td class="mono">0x12</td><td>—</td><td>DC2 设备控制 2</td></tr><tr><td class="mono">19</td><td class="mono">0x13</td><td>—</td><td>DC3 设备控制 3（XOFF）</td></tr><tr><td class="mono">20</td><td class="mono">0x14</td><td>—</td><td>DC4 设备控制 4</td></tr><tr><td class="mono">21</td><td class="mono">0x15</td><td>—</td><td>NAK 否定应答</td></tr><tr><td class="mono">22</td><td class="mono">0x16</td><td>—</td><td>SYN 同步空闲</td></tr><tr><td class="mono">23</td><td class="mono">0x17</td><td>—</td><td>ETB 块传输结束</td></tr><tr><td class="mono">24</td><td class="mono">0x18</td><td>—</td><td>CAN 取消</td></tr><tr><td class="mono">25</td><td class="mono">0x19</td><td>—</td><td>EM 介质结束</td></tr><tr><td class="mono">26</td><td class="mono">0x1A</td><td>—</td><td>SUB 替换</td></tr><tr><td class="mono">27</td><td class="mono">0x1B</td><td>—</td><td>ESC 转义</td></tr><tr><td class="mono">28</td><td class="mono">0x1C</td><td>—</td><td>FS 文件分隔符</td></tr><tr><td class="mono">29</td><td class="mono">0x1D</td><td>—</td><td>GS 组分隔符</td></tr><tr><td class="mono">30</td><td class="mono">0x1E</td><td>—</td><td>RS 记录分隔符</td></tr><tr><td class="mono">31</td><td class="mono">0x1F</td><td>—</td><td>US 单元分隔符</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2>可打印字符 32–126<span class="en">Printable characters</span></h2>
+  <p class="sub">标准 ASCII 的可打印区间。注意 65–90 是大写字母，97–122 是小写字母，两者相差 32（0x20）。</p>
+  <div class="scroll"><table><thead><tr><th>十进制</th><th>十六进制</th><th>字符</th><th>说明</th><th>十进制</th><th>十六进制</th><th>字符</th><th>说明</th><th>十进制</th><th>十六进制</th><th>字符</th><th>说明</th><th>十进制</th><th>十六进制</th><th>字符</th><th>说明</th></tr></thead><tbody><tr><td class="mono">32</td><td class="mono">0x20</td><td class="ch">␠</td><td>空格</td><td class="mono">56</td><td class="mono">0x38</td><td class="ch">8</td><td>数字 8</td><td class="mono">80</td><td class="mono">0x50</td><td class="ch">P</td><td>—</td><td class="mono">104</td><td class="mono">0x68</td><td class="ch">h</td><td>—</td></tr><tr><td class="mono">33</td><td class="mono">0x21</td><td class="ch">!</td><td>叹号</td><td class="mono">57</td><td class="mono">0x39</td><td class="ch">9</td><td>数字 9</td><td class="mono">81</td><td class="mono">0x51</td><td class="ch">Q</td><td>—</td><td class="mono">105</td><td class="mono">0x69</td><td class="ch">i</td><td>—</td></tr><tr><td class="mono">34</td><td class="mono">0x22</td><td class="ch">&quot;</td><td>双引号</td><td class="mono">58</td><td class="mono">0x3A</td><td class="ch">:</td><td>冒号</td><td class="mono">82</td><td class="mono">0x52</td><td class="ch">R</td><td>—</td><td class="mono">106</td><td class="mono">0x6A</td><td class="ch">j</td><td>—</td></tr><tr><td class="mono">35</td><td class="mono">0x23</td><td class="ch">#</td><td>井号</td><td class="mono">59</td><td class="mono">0x3B</td><td class="ch">;</td><td>分号</td><td class="mono">83</td><td class="mono">0x53</td><td class="ch">S</td><td>—</td><td class="mono">107</td><td class="mono">0x6B</td><td class="ch">k</td><td>—</td></tr><tr><td class="mono">36</td><td class="mono">0x24</td><td class="ch">$</td><td>美元符</td><td class="mono">60</td><td class="mono">0x3C</td><td class="ch">&lt;</td><td>小于号</td><td class="mono">84</td><td class="mono">0x54</td><td class="ch">T</td><td>—</td><td class="mono">108</td><td class="mono">0x6C</td><td class="ch">l</td><td>—</td></tr><tr><td class="mono">37</td><td class="mono">0x25</td><td class="ch">%</td><td>百分号</td><td class="mono">61</td><td class="mono">0x3D</td><td class="ch">=</td><td>等号</td><td class="mono">85</td><td class="mono">0x55</td><td class="ch">U</td><td>—</td><td class="mono">109</td><td class="mono">0x6D</td><td class="ch">m</td><td>—</td></tr><tr><td class="mono">38</td><td class="mono">0x26</td><td class="ch">&amp;</td><td>与号</td><td class="mono">62</td><td class="mono">0x3E</td><td class="ch">&gt;</td><td>大于号</td><td class="mono">86</td><td class="mono">0x56</td><td class="ch">V</td><td>—</td><td class="mono">110</td><td class="mono">0x6E</td><td class="ch">n</td><td>—</td></tr><tr><td class="mono">39</td><td class="mono">0x27</td><td class="ch">&#x27;</td><td>单引号</td><td class="mono">63</td><td class="mono">0x3F</td><td class="ch">?</td><td>问号</td><td class="mono">87</td><td class="mono">0x57</td><td class="ch">W</td><td>—</td><td class="mono">111</td><td class="mono">0x6F</td><td class="ch">o</td><td>—</td></tr><tr><td class="mono">40</td><td class="mono">0x28</td><td class="ch">(</td><td>左圆括号</td><td class="mono">64</td><td class="mono">0x40</td><td class="ch">@</td><td>at 符</td><td class="mono">88</td><td class="mono">0x58</td><td class="ch">X</td><td>—</td><td class="mono">112</td><td class="mono">0x70</td><td class="ch">p</td><td>—</td></tr><tr><td class="mono">41</td><td class="mono">0x29</td><td class="ch">)</td><td>右圆括号</td><td class="mono">65</td><td class="mono">0x41</td><td class="ch">A</td><td>—</td><td class="mono">89</td><td class="mono">0x59</td><td class="ch">Y</td><td>—</td><td class="mono">113</td><td class="mono">0x71</td><td class="ch">q</td><td>—</td></tr><tr><td class="mono">42</td><td class="mono">0x2A</td><td class="ch">*</td><td>星号</td><td class="mono">66</td><td class="mono">0x42</td><td class="ch">B</td><td>—</td><td class="mono">90</td><td class="mono">0x5A</td><td class="ch">Z</td><td>—</td><td class="mono">114</td><td class="mono">0x72</td><td class="ch">r</td><td>—</td></tr><tr><td class="mono">43</td><td class="mono">0x2B</td><td class="ch">+</td><td>加号</td><td class="mono">67</td><td class="mono">0x43</td><td class="ch">C</td><td>—</td><td class="mono">91</td><td class="mono">0x5B</td><td class="ch">[</td><td>左方括号</td><td class="mono">115</td><td class="mono">0x73</td><td class="ch">s</td><td>—</td></tr><tr><td class="mono">44</td><td class="mono">0x2C</td><td class="ch">,</td><td>逗号</td><td class="mono">68</td><td class="mono">0x44</td><td class="ch">D</td><td>—</td><td class="mono">92</td><td class="mono">0x5C</td><td class="ch">\</td><td>反斜杠</td><td class="mono">116</td><td class="mono">0x74</td><td class="ch">t</td><td>—</td></tr><tr><td class="mono">45</td><td class="mono">0x2D</td><td class="ch">-</td><td>连字符</td><td class="mono">69</td><td class="mono">0x45</td><td class="ch">E</td><td>—</td><td class="mono">93</td><td class="mono">0x5D</td><td class="ch">]</td><td>右方括号</td><td class="mono">117</td><td class="mono">0x75</td><td class="ch">u</td><td>—</td></tr><tr><td class="mono">46</td><td class="mono">0x2E</td><td class="ch">.</td><td>句点</td><td class="mono">70</td><td class="mono">0x46</td><td class="ch">F</td><td>—</td><td class="mono">94</td><td class="mono">0x5E</td><td class="ch">^</td><td>脱字符</td><td class="mono">118</td><td class="mono">0x76</td><td class="ch">v</td><td>—</td></tr><tr><td class="mono">47</td><td class="mono">0x2F</td><td class="ch">/</td><td>斜杠</td><td class="mono">71</td><td class="mono">0x47</td><td class="ch">G</td><td>—</td><td class="mono">95</td><td class="mono">0x5F</td><td class="ch">_</td><td>下划线</td><td class="mono">119</td><td class="mono">0x77</td><td class="ch">w</td><td>—</td></tr><tr><td class="mono">48</td><td class="mono">0x30</td><td class="ch">0</td><td>数字 0</td><td class="mono">72</td><td class="mono">0x48</td><td class="ch">H</td><td>—</td><td class="mono">96</td><td class="mono">0x60</td><td class="ch">`</td><td>反引号</td><td class="mono">120</td><td class="mono">0x78</td><td class="ch">x</td><td>—</td></tr><tr><td class="mono">49</td><td class="mono">0x31</td><td class="ch">1</td><td>数字 1</td><td class="mono">73</td><td class="mono">0x49</td><td class="ch">I</td><td>—</td><td class="mono">97</td><td class="mono">0x61</td><td class="ch">a</td><td>—</td><td class="mono">121</td><td class="mono">0x79</td><td class="ch">y</td><td>—</td></tr><tr><td class="mono">50</td><td class="mono">0x32</td><td class="ch">2</td><td>数字 2</td><td class="mono">74</td><td class="mono">0x4A</td><td class="ch">J</td><td>—</td><td class="mono">98</td><td class="mono">0x62</td><td class="ch">b</td><td>—</td><td class="mono">122</td><td class="mono">0x7A</td><td class="ch">z</td><td>—</td></tr><tr><td class="mono">51</td><td class="mono">0x33</td><td class="ch">3</td><td>数字 3</td><td class="mono">75</td><td class="mono">0x4B</td><td class="ch">K</td><td>—</td><td class="mono">99</td><td class="mono">0x63</td><td class="ch">c</td><td>—</td><td class="mono">123</td><td class="mono">0x7B</td><td class="ch">{</td><td>左花括号</td></tr><tr><td class="mono">52</td><td class="mono">0x34</td><td class="ch">4</td><td>数字 4</td><td class="mono">76</td><td class="mono">0x4C</td><td class="ch">L</td><td>—</td><td class="mono">100</td><td class="mono">0x64</td><td class="ch">d</td><td>—</td><td class="mono">124</td><td class="mono">0x7C</td><td class="ch">|</td><td>竖线</td></tr><tr><td class="mono">53</td><td class="mono">0x35</td><td class="ch">5</td><td>数字 5</td><td class="mono">77</td><td class="mono">0x4D</td><td class="ch">M</td><td>—</td><td class="mono">101</td><td class="mono">0x65</td><td class="ch">e</td><td>—</td><td class="mono">125</td><td class="mono">0x7D</td><td class="ch">}</td><td>右花括号</td></tr><tr><td class="mono">54</td><td class="mono">0x36</td><td class="ch">6</td><td>数字 6</td><td class="mono">78</td><td class="mono">0x4E</td><td class="ch">N</td><td>—</td><td class="mono">102</td><td class="mono">0x66</td><td class="ch">f</td><td>—</td><td class="mono">126</td><td class="mono">0x7E</td><td class="ch">~</td><td>波浪号</td></tr><tr><td class="mono">55</td><td class="mono">0x37</td><td class="ch">7</td><td>数字 7</td><td class="mono">79</td><td class="mono">0x4F</td><td class="ch">O</td><td>—</td><td class="mono">103</td><td class="mono">0x67</td><td class="ch">g</td><td>—</td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2>常用转义对照<span class="en">Escape sequences</span></h2>
+  <p class="sub">写代码、写正则、读日志时最常撞上的几个。</p>
+  <div class="scroll"><table><thead><tr><th>转义写法</th><th>控制字符</th><th>十六进制</th><th>说明</th></tr></thead><tbody><tr><td class="mono">\n</td><td class="mono">LF</td><td class="mono">0x0A</td><td>换行，Unix/Linux/macOS 行尾</td></tr><tr><td class="mono">\r</td><td class="mono">CR</td><td class="mono">0x0D</td><td>回车，经典 Mac 行尾</td></tr><tr><td class="mono">\r\n</td><td class="mono">CRLF</td><td class="mono">0x0D 0x0A</td><td>Windows 行尾，两个字节</td></tr><tr><td class="mono">\t</td><td class="mono">HT</td><td class="mono">0x09</td><td>水平制表符</td></tr><tr><td class="mono">\0</td><td class="mono">NUL</td><td class="mono">0x00</td><td>C 字符串结束符</td></tr><tr><td class="mono">\b</td><td class="mono">BS</td><td class="mono">0x08</td><td>退格</td></tr><tr><td class="mono">\f</td><td class="mono">FF</td><td class="mono">0x0C</td><td>换页</td></tr><tr><td class="mono">\v</td><td class="mono">VT</td><td class="mono">0x0B</td><td>垂直制表</td></tr></tbody></table></div>
+  <div class="warn"><b>CRLF 是两个字节</b>文本里看到的「换行」在 Windows 上是 <code>\r\n</code>（0x0D 0x0A），在 Unix 上只有 <code>\n</code>（0x0A）。跨平台处理文本时用 <code>bytes.replace(b"\r\n", b"\n")</code> 统一，别用字符长度硬算。</div>
+</section>
+
+<section>
+  <h2>DEL 与扩展区<span class="en">DEL and extended range</span></h2>
+  <p>127（0x7F）是 <code>DEL</code>，历史上用于删除纸带上的一个字符。128–255 不属于标准 ASCII，属于 Latin-1（ISO-8859-1）等扩展字符集 —— 这段区间在中文字符编码里完全不同，不要混用。</p>
+  <div class="scroll"><table><thead><tr><th>十六进制</th><th>十进制</th><th>说明</th></tr></thead><tbody><tr><td class="mono">0xA0</td><td class="mono">160</td><td>不换行空格 NBSP（HTML &amp;nbsp;）</td></tr><tr><td class="mono">0xA9</td><td class="mono">169</td><td>版权符号 ©</td></tr><tr><td class="mono">0xAE</td><td class="mono">174</td><td>注册商标 ®</td></tr><tr><td class="mono">0xB0</td><td class="mono">176</td><td>度数符号 °</td></tr><tr><td class="mono">0xB1</td><td class="mono">177</td><td>正负号 ±</td></tr><tr><td class="mono">0xB5</td><td class="mono">181</td><td>微符号 µ</td></tr><tr><td class="mono">0xB7</td><td class="mono">183</td><td>间隔号 ·</td></tr><tr><td class="mono">0xD7</td><td class="mono">215</td><td>乘号 ×</td></tr><tr><td class="mono">0xF7</td><td class="mono">247</td><td>除号 ÷</td></tr><tr><td class="mono">0xFF</td><td class="mono">255</td><td>ÿ（Latin-1 最后一个码位）</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2>容易踩的几个坑<span class="en">Gotchas</span></h2>
+  <h3>1. 「127 个字符」是错的</h3>
+  <p>标准 ASCII 是 0–127 共 <b>128</b> 个码位，其中 33 个控制字符 + 95 个可打印字符（含空格）。常说「128 个字符」才对。</p>
+  <h3>2. 大小写差 32</h3>
+  <p><code>'A' = 65</code>、<code>'a' = 97</code>，差 32。这个性质被大量用于位运算做大小写转换：<code>c | 0x20</code> 转小写，<code>c &amp; ~0x20</code> 转大写（仅对字母有效）。</p>
+  <h3>3. 数字和字母不连续</h3>
+  <p><code>'9' = 57</code> 之后是 <code>':' = 58</code>，不是 <code>'A'</code>。想判断字符是不是数字要用范围 <code>48–57</code>，不能靠「小于 A」。</p>
+  <h3>4. 中文不属于 ASCII</h3>
+  <p>任何中文字符都不是 ASCII，一个汉字在 UTF-8 下占 3 字节，在 GBK 下占 2 字节。看到「ASCII 乱码」基本都是编码不一致，而不是 ASCII 表用错。</p>
+</section>
+
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links">相关：<a href="https://util123.top" target="_blank" rel="noopener">Util123 在线工具集</a> · <a href="..//ascii/">ASCII 码表</a> · <a href="..//httpstatus/">HTTP 状态码</a> · <a href="..//cron/">Cron 表达式</a></div>
+    <div>本站为纯静态速查手册，数据可自由引用。需要交互计算请使用 <a href="https://util123.top" target="_blank" rel="noopener">util123.top</a>。</div>
+    <div style="margin-top:6px">© 2026 开发者速查表 · <a href="https://github.com/maqiangThunder/dev-cheatsheets" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

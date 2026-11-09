@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cron 表达式速查 · 语法、符号、常用示例与陷阱 | 开发者速查表</title>
+<meta name="description" content="Cron 表达式中文速查：5 字段含义、* , - / ? L W # 特殊符号用法、20+ 常用写法、@daily 等快捷宏，以及日与星期「或」语义等四个经典陷阱。">
+<link rel="canonical" href="https://maqiangthunder.github.io/dev-cheatsheets/cron/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cron 表达式速查 · 语法、符号、常用示例与陷阱 | 开发者速查表">
+<meta property="og:description" content="Cron 表达式中文速查：5 字段含义、* , - / ? L W # 特殊符号用法、20+ 常用写法、@daily 等快捷宏，以及日与星期「或」语义等四个经典陷阱。">
+<meta property="og:url" content="https://maqiangthunder.github.io/dev-cheatsheets/cron/">
+<meta name="theme-color" content="#2563eb">
+<style>
+:root{--brand:#2563eb;--brand-d:#1d4ed8;--accent:#0ea5e9;--ink:#0f172a;--muted:#64748b;
+--line:#e2e8f0;--bg:#f8fafc;--card:#fff;--code-bg:#f1f5f9;--tip-bg:#eff6ff;--tip-line:#bfdbfe;
+--warn-bg:#fff7ed;--warn-line:#fed7aa;--ok:#059669}
+@media (prefers-color-scheme:dark){:root{--ink:#e2e8f0;--muted:#94a3b8;--line:#1e293b;
+--bg:#0b1220;--card:#111a2b;--code-bg:#0f172a;--tip-bg:#0e1c33;--tip-line:#1e3a5f;
+--warn-bg:#2a1c0c;--warn-line:#7c4a12;--ok:#34d399}}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+color:var(--ink);background:var(--bg);line-height:1.68;-webkit-font-smoothing:antialiased;font-size:15.5px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(135deg,#1d4ed8 0%,#0ea5e9 100%);color:#fff;padding:46px 0 40px}
+header a{color:#dbeafe}
+header h1{margin:8px 0 12px;font-size:31px;line-height:1.3;letter-spacing:-.4px}
+header h1 .en{display:block;font-size:15px;font-weight:400;opacity:.82;margin-top:8px;letter-spacing:0}
+header p.lead{margin:0;opacity:.93;font-size:15px;max-width:660px}
+.crumb{font-size:13px;opacity:.85;text-decoration:none}
+.crumb:hover{text-decoration:underline}
+a.cta{display:inline-block;margin-top:20px;background:#fff;color:var(--brand-d);text-decoration:none;
+font-weight:600;padding:11px 22px;border-radius:10px;font-size:14.5px;box-shadow:0 2px 10px rgba(2,6,23,.16)}
+a.cta:hover{background:#f1f5f9}
+main{padding:34px 0 56px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 10px;margin-bottom:20px}
+h2{font-size:19.5px;margin:0 0 6px;letter-spacing:-.2px}
+h2 .en{font-weight:400;color:var(--muted);font-size:13.5px;margin-left:8px;letter-spacing:0}
+.sub{color:var(--muted);font-size:13.8px;margin:0 0 15px}
+h3{font-size:15.5px;margin:20px 0 8px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:6px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;
+background:var(--code-bg);padding:1px 5px;border-radius:5px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:16px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+border-bottom:1px solid #cbd5e1;white-space:nowrap;position:sticky;top:0;background:var(--card)}
+tbody tr:hover{background:var(--code-bg)}
+td.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;color:var(--brand);white-space:nowrap}
+td.ch{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;text-align:center}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-bottom:6px}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);
+border-radius:12px;padding:16px 18px;transition:.15s;margin-bottom:0}
+a.card:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.12)}
+a.card .t{font-weight:650;font-size:15.5px;margin-bottom:4px;color:var(--brand)}
+a.card .d{font-size:13.4px;color:var(--muted);line-height:1.55}
+.tip,.warn{border-radius:10px;padding:13px 16px;margin:0 0 16px;font-size:14px}
+.tip{background:var(--tip-bg);border:1px solid var(--tip-line)}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line)}
+.tip b,.warn b{display:block;margin-bottom:3px}
+.grp{font-weight:650;font-size:14px;margin:18px 0 6px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:13.4px}
+footer a{color:var(--brand);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .links{margin-bottom:8px}
+@media(max-width:600px){
+header{padding:34px 0 30px}header h1{font-size:24px}body{font-size:15px}
+section{padding:18px 16px 6px}main{padding:24px 0 40px}
+table{font-size:13.2px}th,td{padding:7px 8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="crumb" href="../">← 开发者速查表</a>
+    <h1>Cron 表达式速查<span class="en">Cron Expression Reference · Syntax, Symbols &amp; Examples</span></h1>
+    <p class="lead">五个字段怎么排、特殊符号什么含义、常用写法直接抄，外加四个不会报错但会让你半夜排查的陷阱。</p>
+    <a class="cta" href="https://util123.top/cron/">在线 Cron 解析器（看下次执行时间） →</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+
+<section>
+  <h2>五字段结构<span class="en">The five fields</span></h2>
+  <p class="sub">标准 cron 表达式由 5 个空白分隔的字段组成，从左到右依次是：</p>
+  <div class="scroll"><table><thead><tr><th>字段</th><th>Field</th><th>取值范围</th><th>说明</th></tr></thead><tbody><tr><td class="mono">分钟</td><td>minute</td><td class="mono" style="color:var(--ink)">0–59</td><td>每小时的第几分钟</td></tr><tr><td class="mono">小时</td><td>hour</td><td class="mono" style="color:var(--ink)">0–23</td><td>每天的第几小时</td></tr><tr><td class="mono">日</td><td>day of month</td><td class="mono" style="color:var(--ink)">1–31</td><td>每月的第几天</td></tr><tr><td class="mono">月</td><td>month</td><td class="mono" style="color:var(--ink)">1–12 或 JAN–DEC</td><td>第几个月</td></tr><tr><td class="mono">星期</td><td>day of week</td><td class="mono" style="color:var(--ink)">0–7 或 SUN–SAT</td><td>0 和 7 都表示周日</td></tr></tbody></table></div>
+  <div class="tip"><b>容易记反</b>顺序是<b>分 时 日 月 周</b>，不是「年月日时分」。<code>30 2 * * *</code> 是「每天 2:30」，不是「2 点 30 分」写反。</div>
+</section>
+
+<section>
+  <h2>特殊符号<span class="en">Special characters</span></h2>
+  <div class="scroll"><table><thead><tr><th>符号</th><th>含义</th><th>用法</th></tr></thead><tbody><tr><td><code>*</code></td><td>任意值</td><td>该字段所有可能值都匹配。<code>* * * * *</code> 是每分钟。</td></tr><tr><td><code>,</code></td><td>枚举</td><td><code>1,15,30</code> 表示 1、15、30 三个值。</td></tr><tr><td><code>-</code></td><td>范围</td><td><code>9-17</code> 表示 9 到 17，含两端。</td></tr><tr><td><code>/</code></td><td>步长</td><td><code>*/5</code> 每 5 个单位，<code>10-50/10</code> 表示 10 到 50 每 10 个。</td></tr><tr><td><code>?</code></td><td>不指定</td><td>仅 Quartz 方言支持，表示「不关心」该字段，不能与 <code>*</code> 混用在同一字段。</td></tr><tr><td><code>L</code></td><td>最后</td><td>Quartz：<code>L</code> 在日字段表示当月最后一天，在星期字段表示最后一个周几。</td></tr><tr><td><code>W</code></td><td>工作日</td><td>Quartz：<code>15W</code> 表示离 15 号最近的工作日。</td></tr><tr><td><code>#</code></td><td>第几个</td><td>Quartz：<code>5#2</code> 表示当月第二个周五。</td></tr></tbody></table></div>
+  <div class="warn"><b>方言警告</b><code>?</code>、<code>L</code>、<code>W</code>、<code>#</code> 是 <b>Quartz（Java 系）</b>的扩展语法，标准 Vixie Cron 和大多数 Linux crontab <b>不支持</b>。写进 crontab 会直接报错。用之前先确认你的调度器是哪一种。</div>
+</section>
+
+<section>
+  <h2>常用写法<span class="en">Common patterns</span></h2>
+  <p class="sub">直接抄这一栏基本够用。</p>
+  <div class="scroll"><table><thead><tr><th>表达式</th><th>含义</th></tr></thead><tbody><tr><td class="mono">* * * * *</td><td>每分钟执行</td></tr><tr><td class="mono">*/5 * * * *</td><td>每 5 分钟</td></tr><tr><td class="mono">0 * * * *</td><td>每小时整点</td></tr><tr><td class="mono">0 */2 * * *</td><td>每 2 小时整点</td></tr><tr><td class="mono">30 3 * * *</td><td>每天 03:30</td></tr><tr><td class="mono">0 0 * * *</td><td>每天 00:00</td></tr><tr><td class="mono">0 9 * * 1-5</td><td>周一到周五 09:00</td></tr><tr><td class="mono">0 9 * * MON-FRI</td><td>同上，用英文缩写写法</td></tr><tr><td class="mono">0 0 * * 0</td><td>每周日 00:00</td></tr><tr><td class="mono">0 0 1 * *</td><td>每月 1 号 00:00</td></tr><tr><td class="mono">0 0 1 */3 *</td><td>每季度首日 00:00（1、4、7、10 月）</td></tr><tr><td class="mono">0 0 1 1 *</td><td>每年 1 月 1 日 00:00</td></tr><tr><td class="mono">0 2 * * 6</td><td>每周六 02:00</td></tr><tr><td class="mono">*/10 9-18 * * 1-5</td><td>工作日 9–18 点之间每 10 分钟</td></tr><tr><td class="mono">0 8,12,18 * * *</td><td>每天 8 点、12 点、18 点</td></tr><tr><td class="mono">15 14 1 * *</td><td>每月 1 号 14:15</td></tr><tr><td class="mono">0 22 * * 1-5</td><td>工作日 22:00</td></tr><tr><td class="mono">23 0-23/2 * * *</td><td>每 2 小时的第 23 分钟（00:23、02:23…）</td></tr><tr><td class="mono">5 4 * * SUN</td><td>每周日 04:05</td></tr><tr><td class="mono">0 0,12 1 */2 *</td><td>每隔一个月的 1 号，0 点和 12 点各一次</td></tr><tr><td class="mono">0 4 8-14 * *</td><td>每月 8–14 号每天 04:00</td></tr><tr><td class="mono">0 0 1,15 * 3</td><td>每月 1 号和 15 号，且仅当是周三 —— 见下方陷阱</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2>快捷宏<span class="en">Macros</span></h2>
+  <div class="scroll"><table><thead><tr><th>宏</th><th>等价表达式</th><th>含义</th></tr></thead><tbody><tr><td class="mono">@yearly / @annually</td><td class="mono" style="color:var(--ink)">0 0 1 1 *</td><td>每年 1 月 1 日 00:00</td></tr><tr><td class="mono">@monthly</td><td class="mono" style="color:var(--ink)">0 0 1 * *</td><td>每月 1 日 00:00</td></tr><tr><td class="mono">@weekly</td><td class="mono" style="color:var(--ink)">0 0 * * 0</td><td>每周日 00:00</td></tr><tr><td class="mono">@daily / @midnight</td><td class="mono" style="color:var(--ink)">0 0 * * *</td><td>每天 00:00</td></tr><tr><td class="mono">@hourly</td><td class="mono" style="color:var(--ink)">0 * * * *</td><td>每小时整点</td></tr><tr><td class="mono">@reboot</td><td class="mono" style="color:var(--ink)">—</td><td>系统启动时运行一次（不适用于在线 Cron 服务）</td></tr></tbody></table></div>
+  <p class="sub">宏只有部分实现支持。crontab 里可以用，但很多在线 Cron 服务不支持 <code>@reboot</code>。</p>
+</section>
+
+<section>
+  <h2>四个经典陷阱<span class="en">Gotchas</span></h2>
+
+  <h3>1. 日和星期同时指定，是「或」不是「与」</h3>
+  <p>这是最反直觉的一点。当<b>日</b>和<b>星期</b>两个字段都不是 <code>*</code> 时，Vixie Cron 的语义是<b>满足任意一个就触发</b>，而不是两个都满足。</p>
+  <p>例：<code>0 0 1,15 * 3</code> 的本意可能是「每月 1 号和 15 号，且必须是周三」，但实际含义是「每月 1 号、15 号<b>或者</b>每个周三」—— 触发次数远超预期。</p>
+  <div class="warn"><b>怎么绕过</b>想让两个条件同时成立，只能在脚本内部加判断（比如检查 <code>date +%u</code> 是否为 3），或者改用支持 <code>?</code> 的 Quartz 方言。</div>
+
+  <h3>2. 星期从 0 还是 1 开始</h3>
+  <p>Vixie Cron 里 <b>0 和 7 都表示周日</b>，1 是周一。但 Quartz 里 1 是周日，7 是周六。跨系统迁移 cron 表达式时，这里最容易静默出错 —— 不会报错，只是执行时间整体偏移一天。用英文缩写 <code>SUN</code>–<code>SAT</code> 可以避开这个坑。</p>
+
+  <h3>3. 时区不是你以为的那个</h3>
+  <p>crontab 的时区跟随<b>系统时区</b>（<code>/etc/timezone</code> 或 <code>TZ</code> 环境变量），不是用户所在时区。服务器常是 UTC，于是「每天 09:00」实际是北京时间 17:00。</p>
+  <p>容器里更要注意：镜像默认 UTC，即使宿主机是 CST。</p>
+
+  <h3>4. 分钟步长不会「对齐到整点」</h3>
+  <p><code>*/7 * * * *</code> 不是每 7 分钟均匀跑一次，而是在 0、7、14…56 分跑，然后下一小时又从 0 开始 —— 56 到下一个 0 之间只隔 4 分钟。步长不能整除 60 时，边界处间隔会不均匀。</p>
+  <p>需要严格等间隔，就用秒级调度器（systemd timer、K8s CronJob 之外的方案）或让脚本自己 sleep。</p>
+</section>
+
+<section>
+  <h2>写完之后一定要验算<span class="en">Verify before you deploy</span></h2>
+  <p>cron 表达式最坑的地方是：写错了不会报错，只会安静地在该跑的时候不跑，或者不该跑的时候疯狂跑。上线前至少做两件事：</p>
+  <ol>
+    <li>用解析器把表达式翻译成「未来 5 次执行时间」，肉眼对一遍。</li>
+    <li>确认调度器的时区，并把时区差异折算成实际本地时间。</li>
+  </ol>
+  <p>本页只解决「怎么写」，算不出「下次什么时候跑」—— 那需要真正的解析器。用下面的工具直接看未来执行时间。</p>
+</section>
+
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links">相关：<a href="https://util123.top" target="_blank" rel="noopener">Util123 在线工具集</a> · <a href="..//ascii/">ASCII 码表</a> · <a href="..//httpstatus/">HTTP 状态码</a> · <a href="..//cron/">Cron 表达式</a></div>
+    <div>本站为纯静态速查手册，数据可自由引用。需要交互计算请使用 <a href="https://util123.top" target="_blank" rel="noopener">util123.top</a>。</div>
+    <div style="margin-top:6px">© 2026 开发者速查表 · <a href="https://github.com/maqiangThunder/dev-cheatsheets" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>
