@@ -108,6 +108,7 @@ def shell(slug, title, desc, body, h1, en, lead, cta=None, extra_head=""):
 <meta property="og:description" content="%s">
 <meta property="og:url" content="%s">
 <meta name="theme-color" content="#2563eb">
+<meta name="msvalidate.01" content="%s">
 %s<style>%s</style>
 </head>
 <body>
@@ -135,7 +136,7 @@ def shell(slug, title, desc, body, h1, en, lead, cta=None, extra_head=""):
 </html>
 """ % (
         esc(title), esc(desc), esc(canonical), esc(title), esc(desc), esc(canonical),
-        extra_head, CSS, crumb, h1, esc(en), lead, cta_html, body,
+        BING_MSVALIDATE, extra_head, CSS, crumb, h1, esc(en), lead, cta_html, body,
         UTIL, rel, rel, rel, UTIL, SITE,
     )
 
@@ -662,6 +663,17 @@ Sitemap: %s/sitemap.xml
 # IndexNow（Bing / Yandex 即时收录）key 文件，与 maqiangthunder.github.io 上其他项目站点共用同一 key
 INDEXNOW_KEY = "93ea49b44c5ab1387d572caf5c00ed1a"
 
+# 搜索引擎站长验证
+# Bing：根文件放项目子路径下 Bing 未必认（它按站点根校验），所以同时用 meta 标签验证
+BING_MSVALIDATE = "3064BAE72021AEE71FDF47842243FED1"
+BING_AUTH = """<?xml version="1.0"?>
+<users>
+\t<user>%s</user>
+</users>
+""" % BING_MSVALIDATE
+GOOGLE_VERIFY_FILE = "google31716acc6e0ed1fd.html"
+GOOGLE_VERIFY_CONTENT = "google-site-verification: google31716acc6e0ed1fd.html\n"
+
 SITEMAP = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 %s
@@ -762,6 +774,8 @@ def main():
     write("robots.txt", ROBOTS)
     write(".nojekyll", "")
     write(INDEXNOW_KEY + ".txt", INDEXNOW_KEY)
+    write("BingSiteAuth.xml", BING_AUTH)
+    write(GOOGLE_VERIFY_FILE, GOOGLE_VERIFY_CONTENT)
 
     # sitemap
     urls = [("", "1.0"), ("ascii/", "0.9"), ("httpstatus/", "0.9"), ("cron/", "0.9")]
